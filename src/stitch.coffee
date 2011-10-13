@@ -31,7 +31,7 @@ catch err
 try
   jade = require 'jade'
   compilers.jade = (module, filename) ->
-    content = "module.exports = #{jade.compile(fs.readFileSync filename, 'utf8')};"
+    content = "module.exports = #{jade.compile fs.readFileSync(filename, 'utf8'), client: true, compileDebug: false};"
     module._compile content, filename
 catch err
 
