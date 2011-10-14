@@ -28,6 +28,13 @@ try
       module._compile content, filename
 catch err
 
+try
+  ck = require 'coffeekup'
+  compilers.ck = (module, filename) ->
+    content = ck.compile fs.readFileSync filename, 'utf8'
+    module._compile "module.exports = #{content}", filename
+catch err
+
 
 exports.Package = class Package
   constructor: (config) ->
